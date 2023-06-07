@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+  <div>
+      <label>Класс</label>
+      <input type="text" formControlName="Name" pInputText />
+  </div>
+
+  <div class="add-btn" >
+      <p-button label="Редактировать" (click)="update()"></p-button>
+      <p-button label="Удалить" (click)="remove()"></p-button>
+  </div>
+</form>

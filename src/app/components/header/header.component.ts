@@ -36,8 +36,12 @@ export class HeaderComponent implements OnInit {
               items: [{
                       label: 'Добавить учителя', 
                       icon: 'pi pi-fw pi-plus',
+                  command: () => this._router.navigateByUrl('teacher')
+
                   },
-                  {label: 'Просмотр'},
+                  {label: 'Просмотр',
+                  command: () => this._router.navigateByUrl('teachers')
+                },
               ]
           },
           {
@@ -58,8 +62,30 @@ export class HeaderComponent implements OnInit {
               items: [{
                       label: 'Добавить предмет', 
                       icon: 'pi pi-fw pi-plus',
+                  command: () => this._router.navigateByUrl('subject')
+
                   },
-                  {label: 'Просмотр'},
+                  {label: 'Просмотр',
+                  command: () => this._router.navigateByUrl('subjects')
+                },
+              ]
+          },
+          {
+              label: 'Оценки',
+              command: () => this._router.navigateByUrl('marks')
+              
+
+          },
+          {
+              label: 'Выборки',  
+              items: [{
+                      label: 'Ученики классов', 
+                  command: () => this._router.navigateByUrl('class-students')
+
+                  },
+                  {label: 'Просмотр',
+                  command: () => this._router.navigateByUrl('subjects')
+                },
               ]
           },
       ];

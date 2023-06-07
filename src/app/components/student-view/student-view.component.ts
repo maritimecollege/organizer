@@ -16,17 +16,24 @@ export class StudentViewComponent implements OnInit {
     Name: [''],
     Surname: [''],
     BirthDate: [''],
+    Class: [''],
   })
+
+  options = []
 
   constructor(private _fb: FormBuilder, private _service: TasksService) { }
 
   ngOnInit(): void {
     this.form.patchValue(this.student);
+    this._service.load('Class').subscribe(res => {
+      this.options = res.map((en: any) => en.attributes)
+    })
   }
 
   remove(): void {
     console.log(this.form.value)
     this._service.remove(this.form.value, 'Learner')
+    
   }
 
   update(): void {

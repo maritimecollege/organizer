@@ -3,6 +3,10 @@
         <label>Класс</label>
         <input type="text" formControlName="Name" pInputText />
     </div>
+    <div>
+        <label>Классный руководитель</label>
+        <p-dropdown [options]="options" formControlName="Teacher" optionLabel="Name"></p-dropdown>
+    </div>
 
     <div class="add-btn" >
         <p-button label="Редактировать" (click)="update()"></p-button>

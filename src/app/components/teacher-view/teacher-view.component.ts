@@ -1,36 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TasksService } from 'src/app/shared/tasks.service';
 
 @Component({
-  selector: 'app-class',
-  templateUrl: './class.component.html',
-  styleUrls: ['./class.component.scss']
+  selector: 'app-teacher-view',
+  templateUrl: './teacher-view.component.html',
+  styleUrls: ['./teacher-view.component.scss']
 })
-export class ClassComponent implements OnInit {
+export class TeacherViewComponent implements OnInit {
+
+  @Input()
+  public entity = [];
 
   form: FormGroup = this._fb.group({
     Id: [''],
     Name: [''],
-    Teacher: ['']
   })
-  options = []
+  options = [];
   constructor(private _fb: FormBuilder, private _service: TasksService) { }
 
   ngOnInit(): void {
+    this.form.patchValue(this.entity);
     this._service.load('Teacher').subscribe(res => {
       this.options = res.map((en: any) => en.attributes);
     })
   }
 
-  add(): void {
-    console.log(this.form.value)
-    this._service.create(this.form.value, 'Class')
-  }
-
   remove(): void {
     console.log(this.form.value)
-    this._service.remove(this.form.value, 'Class')
+    this._service.remove(this.form.value, 'Teacher')
+  }
+
+  update(): void {
+    console.log(this.form.value)
+    this._service.update(this.form.value, 'Teacher')
   }
 
 }

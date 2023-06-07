@@ -1,0 +1,24 @@
+<div class="dropdown">
+  <label>Класс</label>
+  <p-dropdown placeholder="Класс" [options]="options" [(ngModel)]="selectedOption" (ngModelChange)="change($event)" optionLabel="Name"></p-dropdown>
+</div>
+<p-table [value]="entities" [tableStyle]="{ 'min-width': '50rem' }">
+  <ng-template pTemplate="header">
+      <tr>
+          <th>Класс</th>
+          <th>Имя</th>
+          <th>Фамилия</th>
+          <th>Дата рождения</th>
+          <th>Классный руководитель</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+      <tr>
+          <td>{{ product.Class?.Name }}</td>
+          <td>{{ product.Name }}</td>
+          <td>{{ product.Surname }}</td>
+          <td>{{ product.BirthDate | date: 'dd.MM.yy' }}</td>
+          <td>{{ product.Class?.Teacher?.Name }}</td>
+      </tr>
+  </ng-template>
+</p-table>

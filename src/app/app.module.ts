@@ -24,7 +24,16 @@ import { MessageService } from 'primeng/api';
 import { ClassViewComponent } from './components/class-view/class-view.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { TeacherComponent } from './components/teacher/teacher.component';
+import { SubjectComponent } from './components/subject/subject.component';
+import { SubjectViewComponent } from './components/subject-view/subject-view.component';
+import { SubjectsComponent } from './components/subjects/subjects.component';
+import { TeachersComponent } from './components/teachers/teachers.component';
+import { TeacherViewComponent } from './components/teacher-view/teacher-view.component';
+import { ClassLearnersComponent } from './components/class-learners/class-learners.component';
+import { TableModule } from 'primeng/table';
+import { MarksComponent } from './components/marks/marks.component';
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +47,15 @@ import { DropdownModule } from 'primeng/dropdown';
     StudentsComponent,
     StudentViewComponent,
     ClassViewComponent,
-    ClassesComponent
+    ClassesComponent,
+    TeacherComponent,
+    SubjectComponent,
+    SubjectViewComponent,
+    SubjectsComponent,
+    TeachersComponent,
+    TeacherViewComponent,
+    ClassLearnersComponent,
+    MarksComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +70,8 @@ import { DropdownModule } from 'primeng/dropdown';
     BrowserAnimationsModule,
     ToastModule,
     DropdownModule,
+    TableModule,
+    DialogModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

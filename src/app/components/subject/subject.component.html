@@ -1,0 +1,10 @@
+<form [formGroup]="form">
+  <div>
+      <label>Предмет</label>
+      <input type="text" formControlName="Name" pInputText />
+  </div>
+
+  <div class="add-btn" >
+      <p-button label="Добавить" (click)="add()"></p-button>
+  </div>
+</form>

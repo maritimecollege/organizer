@@ -46,6 +46,9 @@ export class TasksService {
     try {
       //Save the Object
       const result = parseEntity.save() as any;
+      this._messageService.add({ severity: 'success', summary: 'Success', detail: 'Успешно добавлено' });
+    
+      
       return of(result.id);
     } catch (error: any) {
       alert('Failed to create new object: ' + error?.message);
@@ -70,6 +73,7 @@ export class TasksService {
         try {
           //Save the Object
           const result = ent.save() as any;
+          
           return of(result.id);
         } catch (error: any) {
           alert('Failed to create new object: ' + error?.message);
@@ -77,8 +81,13 @@ export class TasksService {
     
         }
       }
+      
       return '';
-    })
+    }
+
+    )
+    this._messageService.add({ severity: 'success', summary: 'Success', detail: 'Успешно обновлено' });
+    
   }
 
   remove(entity: any, entityName: string) {
@@ -88,10 +97,14 @@ export class TasksService {
      parseEntity.equalTo("Id", entity['Id']).first().then(function (ent) {
       console.log(ent)
       if(ent) {
-        ent.destroy()
+        ent.destroy().then(() => {
+          window.location.reload();
+        })
       }
     })
     this._messageService.add({ severity: 'success', summary: 'Success', detail: 'Успешно удалено' });
+    
+
     //  try {
     //    //Save the Object
     //    const result = parseEntity.save() as any;

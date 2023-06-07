@@ -16,7 +16,7 @@ export class StudentComponent implements OnInit {
     BirthDate: [''],
     Class: ['']
   })
-
+  ru = {}
   constructor(private _fb: FormBuilder, private _service: TasksService) { }
 
   ngOnInit(): void {
@@ -32,7 +32,12 @@ export class StudentComponent implements OnInit {
 
   add(): void {
     console.log(this.form.value)
-    this._service.create(this.form.value, 'Learner')
+    this._service.create(this.form.value, 'Learner').subscribe(res => {
+      let arr = this.form.value;
+      arr.Id = res;
+      this._service.create({Learner: arr }, 'Marks')
+
+    })
   }
 
   remove(): void {

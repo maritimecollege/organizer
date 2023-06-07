@@ -9,7 +9,11 @@
     </div>
     <div>
         <label>Дата рождения</label>
-        <p-calendar formControlName="BirthDate"></p-calendar>
+        <p-calendar formControlName="BirthDate" dateFormat="dd.mm.yy"></p-calendar>
+    </div>
+    <div>
+        <label>Класс</label>
+        <p-dropdown [options]="options" formControlName="Class" optionLabel="Name"></p-dropdown>
     </div>
     <div class="add-btn" >
         <p-button label="Редактировать" (click)="update()"></p-button>
