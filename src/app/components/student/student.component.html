@@ -11,8 +11,11 @@
         <label>Дата рождения</label>
         <p-calendar formControlName="BirthDate"></p-calendar>
     </div>
+    <div>
+        <label>Класс</label>
+        <p-dropdown [options]="options" formControlName="Class" optionLabel="Name"></p-dropdown>
+    </div>
     <div class="add-btn" >
         <p-button label="Добавить" (click)="add()"></p-button>
-        <p-button label="Удалить" (click)="remove()"></p-button>
     </div>
 </form>

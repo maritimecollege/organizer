@@ -19,6 +19,11 @@ import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentsComponent } from './components/students/students.component';
 import { StudentViewComponent } from './components/student-view/student-view.component';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ClassViewComponent } from './components/class-view/class-view.component';
+import { ClassesComponent } from './components/classes/classes.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,9 @@ import { StudentViewComponent } from './components/student-view/student-view.com
     ClassComponent,
     StudentComponent,
     StudentsComponent,
-    StudentViewComponent
+    StudentViewComponent,
+    ClassViewComponent,
+    ClassesComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +51,10 @@ import { StudentViewComponent } from './components/student-view/student-view.com
     CalendarModule,
     ButtonModule,
     BrowserAnimationsModule,
+    ToastModule,
+    DropdownModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

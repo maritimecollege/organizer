@@ -26,7 +26,9 @@ export class HeaderComponent implements OnInit {
                       icon: 'pi pi-fw pi-plus',
                       command: () => this._router.navigateByUrl('class')
                   },
-                  {label: 'Просмотр'},
+                  {label: 'Просмотр',
+                  command: () => this._router.navigateByUrl('classes')
+                },
               ]
           },
           {

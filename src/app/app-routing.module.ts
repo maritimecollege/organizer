@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { ClassComponent } from './components/class/class.component';
 import { StudentComponent } from './components/student/student.component';
 import { StudentsComponent } from './components/students/students.component';
+import { ClassesComponent } from './components/classes/classes.component';
 
 const routes: Routes = [
   {
@@ -21,8 +22,11 @@ const routes: Routes = [
   },
   {
     path: 'class',
-    pathMatch: 'full',
     component: ClassComponent
+  },
+  {
+    path: 'classes',
+    component: ClassesComponent
   },
   ]
 

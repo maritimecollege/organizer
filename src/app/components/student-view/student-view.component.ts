@@ -12,7 +12,7 @@ export class StudentViewComponent implements OnInit {
   public student = [];
 
   form: FormGroup = this._fb.group({
-    id: [''],
+    Id: [''],
     Name: [''],
     Surname: [''],
     BirthDate: [''],
@@ -27,6 +27,11 @@ export class StudentViewComponent implements OnInit {
   remove(): void {
     console.log(this.form.value)
     this._service.remove(this.form.value, 'Learner')
+  }
+
+  update(): void {
+    console.log(this.form.value)
+    this._service.update(this.form.value, 'Learner')
   }
 
 

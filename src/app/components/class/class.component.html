@@ -1,3 +1,10 @@
-<form>
-    <input type="text" pInputText />
+<form [formGroup]="form">
+    <div>
+        <label>Класс</label>
+        <input type="text" formControlName="Name" pInputText />
+    </div>
+
+    <div class="add-btn" >
+        <p-button label="Добавить" (click)="add()"></p-button>
+    </div>
 </form>

@@ -6,6 +6,8 @@ import { environment } from "src/environments/environment";
 import { CreateResponse } from "../models/create-response.model";
 import { Task } from "../models/task.model";
 import * as Parse from 'parse';
+import { MessageService } from "primeng/api";
+import { Guid } from 'guid-typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +15,11 @@ import * as Parse from 'parse';
 export class TasksService {
   public static url = environment.fireBaseUrl;
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private _messageService: MessageService){}
 
   load(entityName: string): Observable<any> {
     const parseEntity = new Parse.Query(entityName);
-    let returnEntities: any = []; 
-     return from(parseEntity.findAll())
+    return from(parseEntity.findAll())
 
   }
 
@@ -29,15 +30,22 @@ export class TasksService {
     //Define its attributes
     Object.keys(entity).forEach((element: any) => {
       console.log(element)
-      if(element != 'id'){
-        parseEntity.set(element, entity[element])
-
+      if(entity[element] != 'id'){
+        // if(typeof entity[element] == "object") {
+        //   const t = new Parse.Query(element).equalTo("Id", entity[element].Id)
+        //   console.log(t)
+        //   parseEntity.set(element, t)
+        // }else {
+          parseEntity.set(element, entity[element])
+        // }
+        
       }
+      parseEntity.set("Id", Guid.create().toString())
+
     });
     try {
       //Save the Object
       const result = parseEntity.save() as any;
-      alert('New object created with objectId: ' + result.id);
       return of(result.id);
     } catch (error: any) {
       alert('Failed to create new object: ' + error?.message);
@@ -46,15 +54,44 @@ export class TasksService {
     }
   }
 
+  update(entity: any, entityName: string){
+    const parseEntity = new Parse.Query(entityName);
+     //Define its attributes
+     parseEntity.equalTo("Id", entity['Id']).first().then(function (ent) {
+      console.log(ent)
+      if(ent) {
+        Object.keys(entity).forEach((element: any) => {
+          console.log(element)
+          if(element != 'Id'){
+            ent.set(element, entity[element])
+          }
+    
+        });
+        try {
+          //Save the Object
+          const result = ent.save() as any;
+          return of(result.id);
+        } catch (error: any) {
+          alert('Failed to create new object: ' + error?.message);
+          return of(error.message);
+    
+        }
+      }
+      return '';
+    })
+  }
+
   remove(entity: any, entityName: string) {
      //Create your Parse Object
      const parseEntity = new Parse.Query(entityName);
      //Define its attributes
-     parseEntity.first().then(function (ent) {
+     parseEntity.equalTo("Id", entity['Id']).first().then(function (ent) {
+      console.log(ent)
       if(ent) {
         ent.destroy()
       }
-     })
+    })
+    this._messageService.add({ severity: 'success', summary: 'Success', detail: 'Успешно удалено' });
     //  try {
     //    //Save the Object
     //    const result = parseEntity.save() as any;

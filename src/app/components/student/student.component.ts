@@ -10,16 +10,25 @@ import { TasksService } from 'src/app/shared/tasks.service';
 export class StudentComponent implements OnInit {
 
   form: FormGroup = this._fb.group({
-    id: [''],
+    Id: [''],
     Name: [''],
     Surname: [''],
     BirthDate: [''],
+    Class: ['']
   })
 
   constructor(private _fb: FormBuilder, private _service: TasksService) { }
 
   ngOnInit(): void {
+    this._service.load('Class').subscribe(res => {
+      // this.options = res;
+      this.options = res.map((ent: any) => ent.attributes);
+
+      console.log(res)
+    })
   }
+
+  options = [];
 
   add(): void {
     console.log(this.form.value)
