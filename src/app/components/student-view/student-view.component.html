@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+    <div>
+        <label>Имя</label>
+        <input type="text" formControlName="Name" pInputText />
+    </div>
+    <div>
+        <label>Фамилия</label>
+        <input type="text" formControlName="Surname" pInputText />
+    </div>
+    <div>
+        <label>Дата рождения</label>
+        <p-calendar formControlName="BirthDate"></p-calendar>
+    </div>
+    <div class="add-btn" >
+        <p-button label="Удалить" (click)="remove()"></p-button>
+    </div>
+</form>

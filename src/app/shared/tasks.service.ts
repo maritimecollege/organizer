@@ -1,10 +1,11 @@
 import { HttpClient, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import * as moment from "moment";
-import { map, Observable } from "rxjs";
+import { from, map, Observable, of } from "rxjs";
 import { environment } from "src/environments/environment";
 import { CreateResponse } from "../models/create-response.model";
 import { Task } from "../models/task.model";
+import * as Parse from 'parse';
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +15,55 @@ export class TasksService {
 
   constructor(private http: HttpClient){}
 
-  load(date: moment.Moment): Observable<Task[]> {
-    return this.http.get<Task[]>(`${TasksService.url}/${date.format('DD-MM-YYYY')}.json`)
-    .pipe(map(tasks => {
-      if(!tasks){
-        return []
+  load(entityName: string): Observable<any> {
+    const parseEntity = new Parse.Query(entityName);
+    let returnEntities: any = []; 
+     return from(parseEntity.findAll())
+
+  }
+
+  create(entity: any, entityName: string): Observable<any>{
+    
+    //Create your Parse Object
+    const parseEntity = new Parse.Object(entityName);
+    //Define its attributes
+    Object.keys(entity).forEach((element: any) => {
+      console.log(element)
+      if(element != 'id'){
+        parseEntity.set(element, entity[element])
+
       }
-      return Object.keys(tasks).map((key:any) => ({...tasks[key], id: key}))
-    }))
+    });
+    try {
+      //Save the Object
+      const result = parseEntity.save() as any;
+      alert('New object created with objectId: ' + result.id);
+      return of(result.id);
+    } catch (error: any) {
+      alert('Failed to create new object: ' + error?.message);
+      return of(error.message);
+
+    }
   }
 
-  create(task: Task): Observable<Task>{
-    // this.http.request(new HttpRequest())
-    return this.http.post<CreateResponse>(`${TasksService.url}/${task.date}.json`, task)
-    .pipe(map(res => {
-      return {...task, id: res.name}
-    }))
-  }
-
-  remove(task: Task): Observable<void>{
-    return this.http.delete<void>(`${TasksService.url}/${task.date}/${task.id}.json`)
+  remove(entity: any, entityName: string) {
+     //Create your Parse Object
+     const parseEntity = new Parse.Query(entityName);
+     //Define its attributes
+     parseEntity.first().then(function (ent) {
+      if(ent) {
+        ent.destroy()
+      }
+     })
+    //  try {
+    //    //Save the Object
+    //    const result = parseEntity.save() as any;
+    //    alert('New object created with objectId: ' + result.id);
+    //    return of(result.id);
+    //  } catch (error: any) {
+    //    alert('Failed to create new object: ' + error?.message);
+    //    return of(error.message);
+ 
+    //  }
   }
 }

@@ -2,3 +2,7 @@
 header {
   padding: 1rem 2rem;
 }
+
+:host {
+  min-height: 100vh;
+}
