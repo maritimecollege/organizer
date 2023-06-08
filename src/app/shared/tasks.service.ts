@@ -13,7 +13,7 @@ import { Guid } from 'guid-typescript';
   providedIn: 'root'
 })
 export class TasksService {
-  public static url = environment.fireBaseUrl;
+
   public spinner: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(private http: HttpClient, private _messageService: MessageService){}
