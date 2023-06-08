@@ -24,14 +24,14 @@ export class StudentComponent implements OnInit {
       // this.options = res;
       this.options = res.map((ent: any) => ent.attributes);
 
-      console.log(res)
+      
     })
   }
 
   options = [];
 
   add(): void {
-    console.log(this.form.value)
+    
     this._service.create(this.form.value, 'Learner').subscribe(res => {
       let arr = this.form.value;
       arr.Id = res;
@@ -41,7 +41,7 @@ export class StudentComponent implements OnInit {
   }
 
   remove(): void {
-    console.log(this.form.value)
+    
     this._service.remove(this.form.value, 'Learner')
   }
 

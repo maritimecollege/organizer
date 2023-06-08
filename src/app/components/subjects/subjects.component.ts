@@ -13,7 +13,7 @@ export class SubjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this._service.load('Subject').subscribe(res => {
-      console.log(res)
+      
       this.entities = res.map((ent: any) => ent.attributes);
 
     });

@@ -24,12 +24,12 @@ export class SubjectViewComponent implements OnInit {
   }
 
   remove(): void {
-    console.log(this.form.value)
+    
     this._service.remove(this.form.value, 'Subject')
   }
 
   update(): void {
-    console.log(this.form.value)
+    
     this._service.update(this.form.value, 'Subject')
   }
 

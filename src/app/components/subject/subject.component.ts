@@ -19,7 +19,7 @@ export class SubjectComponent implements OnInit {
   }
 
   add(): void {
-    console.log(this.form.value)
+    
     this._service.create(this.form.value, 'Subject')
   }
 

@@ -29,7 +29,7 @@ export class TasksService {
     const parseEntity = new Parse.Object(entityName);
     //Define its attributes
     Object.keys(entity).forEach((element: any) => {
-      console.log(element)
+
       if(entity[element] != 'id'){
         // if(typeof entity[element] == "object") {
         //   const t = new Parse.Query(element).equalTo("Id", entity[element].Id)
@@ -61,10 +61,10 @@ export class TasksService {
     const parseEntity = new Parse.Query(entityName);
      //Define its attributes
      parseEntity.equalTo("Id", entity['Id']).first().then(function (ent) {
-      console.log(ent)
+
       if(ent) {
         Object.keys(entity).forEach((element: any) => {
-          console.log(element)
+
           if(element != 'Id'){
             ent.set(element, entity[element])
           }
@@ -97,7 +97,7 @@ export class TasksService {
      const parseEntity = new Parse.Query(entityName);
      //Define its attributes
      parseEntity.equalTo("Id", entity['Id']).first().then(function (ent) {
-      console.log(ent)
+
       if(ent) {
         ent.destroy().then(() => {
           window.location.reload();

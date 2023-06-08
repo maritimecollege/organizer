@@ -17,7 +17,7 @@ export class StudentsComponent implements OnInit {
 
   ngOnInit(): void {
     this._service.load('Learner').subscribe(res => {
-      console.log(res)
+      
       this.students = res.map((ent: any) => ent.attributes);
 
     });

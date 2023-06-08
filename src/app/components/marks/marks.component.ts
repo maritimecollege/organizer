@@ -56,21 +56,21 @@ export class MarksComponent implements OnInit {
   }
 
   add(): void {
-    // console.log(this.form.value)
-    console.log(this.entity);
+    // 
+
     // let mark = JSON.parse(JSON.stringify(this.entity.Mark));
     // console.log(mark)
 
     let clone = JSON.parse(JSON.stringify(this.entity));
     // clone.Mark = mark;
-    console.log(clone)
+
     if(clone.Mark){
-      console.log(clone.Mark?.map((en: any) => en.Subject))
+
       if(clone.Mark?.map((en: any) => en.Subject.Id).includes(this.selectedOption.Id)){
 
         
         clone.Mark.forEach((en: any) => {
-          console.log(en);
+
           en.Subject?.Id == this.selectedOption.Id ? en.Marks.push(this.selectedMark.value) : en
         });
       }else {
@@ -81,7 +81,7 @@ export class MarksComponent implements OnInit {
     else {
       clone.Mark = [{Subject: this.selectedOption, Marks: [this.selectedMark.value]}]
     }
-    console.log(clone)
+
     this._service.update(clone, 'Marks')
   }
 
@@ -102,7 +102,7 @@ export class MarksComponent implements OnInit {
 
     public getAverageMarks(entity: any) {
       const m = entity?.Mark?.filter((en: any) => en.Subject.Id == this.selectedOption.Id)?.at(0)?.Marks;
-      console.log(m)
+
       return m ? (m?.reduce((acc: any, en: any) => acc + en) / m?.length)?.toFixed(2) : '';
     }
 
