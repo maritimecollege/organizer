@@ -24,7 +24,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-entity>
       <tr>
-          <td>{{ entity.Learner.Class?.Name }}</td>
+          <td>{{ getClassName(entity)}}</td>
           <td>{{ entity.Learner.Name }}</td>
           <td>{{ entity.Learner.Surname }}</td>
           <td>{{ entity.Learner.BirthDate | date: 'dd.MM.yy' }}</td>

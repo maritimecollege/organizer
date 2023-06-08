@@ -111,5 +111,9 @@ export class MarksComponent implements OnInit {
     this.entities = this.selectedOptionClass ? this.initEntities.filter((en: any) => en?.Learner?.Class?.Id == this.selectedOptionClass.Id ) : this.entities;
   }
 
+  getClassName(entity: any) {
+    return (this.optionsClass.filter((en: any) => en.Id == entity.Learner.Class?.Id)?.at(0) as any)?.Name;
+  }
+
 
 }
