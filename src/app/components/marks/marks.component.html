@@ -15,6 +15,7 @@
           <th>Фамилия</th>
           <th>Дата рождения</th>
           <th>Оценки</th>
+          <th>Средний бал</th>
           <th></th>
       </tr>
   </ng-template>
@@ -25,13 +26,14 @@
           <td>{{ entity.Learner.Surname }}</td>
           <td>{{ entity.Learner.BirthDate | date: 'dd.MM.yy' }}</td>
           <td>{{ getMarks(entity)?.at(0)?.Marks }}</td>
+          <td>{{ getAverageMarks(entity) || '' }}</td>
           <td>
             <p-button (click)="showDialog(entity)" label="+"></p-button>
 <p-dialog header="Добавление оценки" [(visible)]="visible" [style]="{ width: '50vw' }">
     <div class="flex py-2 justify-content-center">
-        <p-dropdown appendTo="body" [options]="marks" [(ngModel)]="selectedMark" placeholder="Оценка" optionLabel="name"></p-dropdown>
+        <p-dropdown appendTo="body" [options]="marks" [(ngModel)]="selectedMark" optionLabel="name"></p-dropdown>
     </div>
-    <p-button label="+" class="add-btn" (click)="add()"></p-button>
+    <p-button label="Добавить оценку" class="add-btn" (click)="add()"></p-button>
 </p-dialog>
           <td>
       </tr>

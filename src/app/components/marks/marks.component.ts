@@ -100,6 +100,12 @@ export class MarksComponent implements OnInit {
       return entity?.Mark?.filter((en: any) => en.Subject.Id == this.selectedOption.Id)
     }
 
+    public getAverageMarks(entity: any) {
+      const m = entity?.Mark?.filter((en: any) => en.Subject.Id == this.selectedOption.Id)?.at(0)?.Marks;
+      console.log(m)
+      return m ? (m?.reduce((acc: any, en: any) => acc + en) / m?.length)?.toFixed(2) : '';
+    }
+
 
   optionsClass = [];
   selectedOptionClass: any = {};
