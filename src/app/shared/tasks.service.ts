@@ -72,7 +72,9 @@ export class TasksService {
         });
         try {
           //Save the Object
-          const result = ent.save() as any;
+          const result = ent.save().then(() => {
+            window.location.reload();
+          }) as any;
           
           return of(result.id);
         } catch (error: any) {

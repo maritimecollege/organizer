@@ -7,7 +7,7 @@ import * as Parse from 'parse';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'organizer';
+  title = 'Разработка автоматизированной информационной системы "Учет обучающихся" ГБОУ РК АСШИ';
 
   constructor() {
     // Initialize your Parse App Keys
