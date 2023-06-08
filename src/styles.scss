@@ -13,6 +13,26 @@
   box-sizing: border-box;
 }
 
+p-dropdown{
+  display: flex !important;
+}
+
+.p-dropdown {
+  width: 1100px !important;
+}
+
+.p-menubar {
+  border-radius: 10px !important;
+}
+
+p-calendar {
+  display: flex !important;
+}
+
+.p-calendar {
+  width: 1100px !important;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1rem;
@@ -20,7 +40,30 @@ body {
   background: #fff;
   color: #333;
   min-height: 100vh;
+  background-image: url('/assets/bg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+
+  & p-progressSpinner {
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+}
+
+form {
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #fff;
 }
 
 a {

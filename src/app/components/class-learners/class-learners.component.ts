@@ -10,17 +10,19 @@ export class ClassLearnersComponent implements OnInit {
 
   entities = []
   initEntities = []
-  constructor(private _service: TasksService) { }
+  constructor(public _service: TasksService) { }
   options = [];
   selectedOption: any = {};
   ngOnInit(): void {
     this._service.load('Learner').subscribe((res: any) => {
       this.initEntities = res.map((en: any) => en.attributes);
       this.entities = res.map((en: any) => en.attributes);
+      this._service.spinner.next(false);
     })
     this._service.load('Class').subscribe((res: any) => {
       this.options = res.map((en: any) => en.attributes);
     })
+
   }
 
   change($event: any) {

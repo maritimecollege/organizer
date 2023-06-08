@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { TasksService } from 'src/app/shared/tasks.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class ClassViewComponent implements OnInit {
     Teacher: ['']
   })
   options = [];
-  constructor(private _fb: FormBuilder, private _service: TasksService) { }
+  constructor(private _fb: FormBuilder, public _service: TasksService, private confirmationService: ConfirmationService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.form.patchValue(this.entity);
@@ -35,4 +36,18 @@ export class ClassViewComponent implements OnInit {
     
     this._service.update(this.form.value, 'Class')
   }
+
+  confirm(event: any) {
+    this.confirmationService.confirm({
+        target: event.target,
+        message: 'Вы уверены, что хотите удалить запись?',
+        icon: 'pi pi-exclamation-triangle',
+        acceptLabel: 'Да',
+        rejectLabel: 'Нет',
+        accept: () => {
+          this.remove()
+        },
+    });
+  }
 }
+

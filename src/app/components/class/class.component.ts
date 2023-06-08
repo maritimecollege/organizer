@@ -15,7 +15,7 @@ export class ClassComponent implements OnInit {
     Teacher: ['']
   })
   options = []
-  constructor(private _fb: FormBuilder, private _service: TasksService) { }
+  constructor(private _fb: FormBuilder, public _service: TasksService) { }
 
   ngOnInit(): void {
     this._service.load('Teacher').subscribe(res => {

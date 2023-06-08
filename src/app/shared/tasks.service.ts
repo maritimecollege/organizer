@@ -1,7 +1,7 @@
 import { HttpClient, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import * as moment from "moment";
-import { from, map, Observable, of } from "rxjs";
+import { BehaviorSubject, from, map, Observable, of } from "rxjs";
 import { environment } from "src/environments/environment";
 import { CreateResponse } from "../models/create-response.model";
 import { Task } from "../models/task.model";
@@ -14,13 +14,13 @@ import { Guid } from 'guid-typescript';
 })
 export class TasksService {
   public static url = environment.fireBaseUrl;
+  public spinner: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(private http: HttpClient, private _messageService: MessageService){}
 
   load(entityName: string): Observable<any> {
     const parseEntity = new Parse.Query(entityName);
     return from(parseEntity.findAll())
-
   }
 
   create(entity: any, entityName: string): Observable<any>{

@@ -1,3 +1,6 @@
+<div class="spinner" *ngIf="_service.spinner | async">
+    <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+</div>
 <div class="border" *ngFor="let student of students" >
     <app-student-view [student]="student"></app-student-view>
 

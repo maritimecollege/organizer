@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StudentsComponent } from './components/students/students.component';
 import { StudentViewComponent } from './components/student-view/student-view.component';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ClassViewComponent } from './components/class-view/class-view.component';
 import { ClassesComponent } from './components/classes/classes.component';
 import { DropdownModule } from 'primeng/dropdown';
@@ -34,6 +34,12 @@ import { ClassLearnersComponent } from './components/class-learners/class-learne
 import { TableModule } from 'primeng/table';
 import { MarksComponent } from './components/marks/marks.component';
 import { DialogModule } from 'primeng/dialog';
+import { ChartModule } from 'primeng/chart';
+import { ChartsComponent } from './components/charts/charts.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +61,10 @@ import { DialogModule } from 'primeng/dialog';
     TeachersComponent,
     TeacherViewComponent,
     ClassLearnersComponent,
-    MarksComponent
+    MarksComponent,
+    ChartsComponent,
+    NotFoundComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -72,8 +81,11 @@ import { DialogModule } from 'primeng/dialog';
     DropdownModule,
     TableModule,
     DialogModule,
+    ChartModule,
+    ConfirmPopupModule,
+    ProgressSpinnerModule
   ],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

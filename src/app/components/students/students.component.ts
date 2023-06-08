@@ -13,14 +13,18 @@ export class StudentsComponent implements OnInit {
   
   students = []
 
-  constructor(private _service: TasksService, private _fb: FormBuilder) { }
+  constructor(public _service: TasksService, private _fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this._service.spinner.next(true);
+
     this._service.load('Learner').subscribe(res => {
       
       this.students = res.map((ent: any) => ent.attributes);
 
+      this._service.spinner.next(false);
     });
+
   }
 
 }

@@ -11,6 +11,8 @@ import { TeacherComponent } from './components/teacher/teacher.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 import { ClassLearnersComponent } from './components/class-learners/class-learners.component';
 import { MarksComponent } from './components/marks/marks.component';
+import { ChartsComponent } from './components/charts/charts.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -57,6 +59,19 @@ const routes: Routes = [
   {
     path: 'marks',
     component: MarksComponent
+  },
+  // {
+  //   path: 'marks-division',
+  //   component: MarksComponent
+  // },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'marks'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   },
   ]
 

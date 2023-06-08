@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { TasksService } from 'src/app/shared/tasks.service';
 
 @Component({
-  selector: 'app-marks',
-  templateUrl: './marks.component.html',
-  styleUrls: ['./marks.component.scss']
+  selector: 'app-charts',
+  templateUrl: './charts.component.html',
+  styleUrls: ['./charts.component.scss']
 })
-export class MarksComponent implements OnInit {
-
+export class ChartsComponent implements OnInit {
   visibleMark = false;
   entities = []
   initEntities = []
@@ -15,6 +14,8 @@ export class MarksComponent implements OnInit {
   options = [];
   marks: any = [];
   selectedOption: any = {};
+  data: any;
+  optionsChart: any;
   ngOnInit(): void {
     this._service.load('Marks').subscribe((res: any) => {
       this.initEntities = res.map((en: any) => en.attributes);
@@ -43,7 +44,67 @@ export class MarksComponent implements OnInit {
         name: '2',
         value: 2
       },
+      {
+        name: '1',
+        value: 1
+      },
     ]
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+    const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+    console.log(this.entities.map((en: any) => en.Learner.Name))
+    this.data = {
+        labels: this.entities.map((en: any) => en.Learner.Name),
+        datasets: [
+            {
+                label: 'First Dataset',
+                data: [65, 59, 80, 81, 56, 55, 40],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--blue-500'),
+                tension: 0.4
+            },
+            {
+                label: 'Second Dataset',
+                data: [28, 48, 40, 19, 86, 27, 90],
+                fill: false,
+                borderColor: documentStyle.getPropertyValue('--pink-500'),
+                tension: 0.4
+            }
+        ]
+    };
+
+    this.optionsChart = {
+        maintainAspectRatio: false,
+        aspectRatio: 0.6,
+        plugins: {
+            legend: {
+                labels: {
+                    color: textColor
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: textColorSecondary
+                },
+                grid: {
+                    color: surfaceBorder,
+                    drawBorder: false
+                }
+            },
+            y: {
+                ticks: {
+                    color: textColorSecondary
+                },
+                grid: {
+                    color: surfaceBorder,
+                    drawBorder: false
+                }
+            }
+        }
+    };
   }
 
   change($event: any) {

@@ -81,9 +81,11 @@ export class HeaderComponent implements OnInit {
                   {
                     label: 'Оценки',
                     command: () => this._router.navigateByUrl('marks')
-                    
-      
                 },
+                //   {
+                //     label: 'Успеваемость',
+                //     command: () => this._router.navigateByUrl('marks-division')
+                // },
               ]
           },
       ];

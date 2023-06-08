@@ -17,7 +17,7 @@ export class StudentComponent implements OnInit {
     Class: ['']
   })
   ru = {}
-  constructor(private _fb: FormBuilder, private _service: TasksService) { }
+  constructor(private _fb: FormBuilder, public _service: TasksService) { }
 
   ngOnInit(): void {
     this._service.load('Class').subscribe(res => {

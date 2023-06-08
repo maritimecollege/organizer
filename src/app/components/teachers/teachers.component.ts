@@ -10,14 +10,18 @@ export class TeachersComponent implements OnInit {
 
   entities = []
 
-  constructor(private _service: TasksService) { }
+  constructor(public _service: TasksService) { }
 
   ngOnInit(): void {
+    this._service.spinner.next(true);
+
     this._service.load('Teacher').subscribe(res => {
       
       this.entities = res.map((ent: any) => ent.attributes);
 
+      this._service.spinner.next(false);
     });
+
   }
 
 }

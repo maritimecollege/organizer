@@ -1,5 +1,10 @@
-<div class="dropdown">
-  <label>Класс</label>
+<div class="spinner" *ngIf="_service.spinner | async">
+  <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+</div>
+<div class="wrapper">
+
+  <div class="dropdown">
+    <label>Класс</label>
   <p-dropdown placeholder="Класс" [options]="options" [(ngModel)]="selectedOption" (ngModelChange)="change($event)" optionLabel="Name"></p-dropdown>
 </div>
 <p-table [value]="entities" [tableStyle]="{ 'min-width': '50rem' }">
@@ -22,3 +27,4 @@
       </tr>
   </ng-template>
 </p-table>
+  </div>
