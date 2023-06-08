@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { TasksService } from 'src/app/shared/tasks.service';
 
@@ -15,7 +15,7 @@ export class SubjectViewComponent implements OnInit {
 
   form: FormGroup = this._fb.group({
     Id: [''],
-    Name: [''],
+    Name: ['', [Validators.required]],
   })
 
   constructor(private _fb: FormBuilder, public _service: TasksService, private confirmationService: ConfirmationService) { }

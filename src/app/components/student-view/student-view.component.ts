@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { TasksService } from 'src/app/shared/tasks.service';
 
@@ -14,10 +14,10 @@ export class StudentViewComponent implements OnInit {
 
   form: FormGroup = this._fb.group({
     Id: [''],
-    Name: [''],
-    Surname: [''],
-    BirthDate: [''],
-    Class: [''],
+    Name: ['', [Validators.required]],
+    Surname: ['', [Validators.required]],
+    BirthDate: ['', [Validators.required]],
+    Class: ['', [Validators.required]],
   })
 
   options = []

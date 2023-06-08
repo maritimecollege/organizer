@@ -16,7 +16,8 @@
         <p-dropdown [options]="options" formControlName="Class" optionLabel="Name"></p-dropdown>
     </div>
     <div class="add-btn" >
-        <p-button label="Редактировать" (click)="update()"></p-button>
+        
+        <p-button label="Редактировать" [disabled]="form.invalid" (click)="form.invalid ? null : update()"></p-button>
 
         <p-button label="Удалить" (click)="confirm($event)"></p-button>
         <p-confirmPopup></p-confirmPopup>

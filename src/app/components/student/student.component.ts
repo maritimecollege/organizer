@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TasksService } from 'src/app/shared/tasks.service';
 
 @Component({
@@ -11,10 +11,10 @@ export class StudentComponent implements OnInit {
 
   form: FormGroup = this._fb.group({
     Id: [''],
-    Name: [''],
-    Surname: [''],
-    BirthDate: [''],
-    Class: ['']
+    Name: ['', [Validators.required]],
+    Surname: ['', [Validators.required]],
+    BirthDate: ['', [Validators.required]],
+    Class: ['', [Validators.required]]
   })
   ru = {}
   constructor(private _fb: FormBuilder, public _service: TasksService) { }

@@ -5,6 +5,6 @@
   </div>
 
   <div class="add-btn" >
-      <p-button label="Добавить" (click)="add()"></p-button>
+    <p-button label="Добавить" [disabled]="form.invalid" (click)="form.invalid ? null : add()"></p-button>
   </div>
 </form>
