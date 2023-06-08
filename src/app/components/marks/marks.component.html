@@ -1,11 +1,14 @@
 
-<div class="dropdown">
-    <label>Класс</label>
-    <p-dropdown placeholder="Класс" [options]="optionsClass" [(ngModel)]="selectedOptionClass" (ngModelChange)="changeClass($event)" optionLabel="Name"></p-dropdown>
-  </div>
-<div class="dropdown">
-  <label>Предмет</label>
-  <p-dropdown [options]="options" [(ngModel)]="selectedOption" (ngModelChange)="change($event)" optionLabel="Name"></p-dropdown>
+<div class="dropdown__wrapper">
+
+    <div class="dropdown">
+        <label>Класс</label>
+        <p-dropdown placeholder="Класс" [options]="optionsClass" [(ngModel)]="selectedOptionClass" (ngModelChange)="changeClass($event)" optionLabel="Name"></p-dropdown>
+    </div>
+    <div class="dropdown">
+        <label>Предмет</label>
+        <p-dropdown [options]="options" [(ngModel)]="selectedOption" (ngModelChange)="change($event)" optionLabel="Name"></p-dropdown>
+    </div>
 </div>
 <p-table [value]="entities" [tableStyle]="{ 'min-width': '50rem' }">
   <ng-template pTemplate="header">

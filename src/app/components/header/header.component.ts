@@ -70,12 +70,7 @@ export class HeaderComponent implements OnInit {
                 },
               ]
           },
-          {
-              label: 'Оценки',
-              command: () => this._router.navigateByUrl('marks')
-              
-
-          },
+          
           {
               label: 'Выборки',  
               items: [{
@@ -83,8 +78,11 @@ export class HeaderComponent implements OnInit {
                   command: () => this._router.navigateByUrl('class-students')
 
                   },
-                  {label: 'Просмотр',
-                  command: () => this._router.navigateByUrl('subjects')
+                  {
+                    label: 'Оценки',
+                    command: () => this._router.navigateByUrl('marks')
+                    
+      
                 },
               ]
           },
